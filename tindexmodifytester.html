@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <style>
+        #overlay {
+            position: fixed;
+            display: none;
+            width: 45px;
+            height: 45px;
+            top: 400px;
+            left: 95px;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        #text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 40px;
+            color: white;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const body = document.body
+
+        var nn = 3;
+
+        for (i = 0; i < nn; i++) {
+        let bigdiv = document.createElement('div')
+        body.appendChild(bigdiv)
+
+        let n = 65;
+        let anchor_A = 65;
+        let rng = 7;
+        let theletter = getletter(n, anchor_A, rng)
+        // console.log(theletter)
+        function getletter(n, anchor_A, rng) {
+
+            let remainder = n % anchor_A;
+            let remainder2 = remainder % rng;
+
+            let letter = String.fromCharCode(65 + remainder2)
+            return letter
+        }
+
+        // 1 => 69
+        // 1.5 =>70 
+        let linenumber = 8
+        let anchor = 1
+        let anchor2 = 69
+        function getthenum(linenumber, anchor, anchor2) {
+
+            let dist = (linenumber - anchor) * 2
+            // console.log(dist)
+            let thenum = dist + anchor2
+            return thenum
+        }
+        let distcalc = getthenum(linenumber, anchor, anchor2)
+        console.log(distcalc)
+        n = distcalc;
+        let final = getletter(n, anchor_A, rng)
+        console.log(final)
+
+        let imgsrcforpiano = 'Pianokey1.PNG'
+
+        if (final == 'C' || final == 'D' || final == 'E') {
+            imgsrcforpiano = 'Pianokey1.PNG'
+        } else {
+            imgsrcforpiano = 'Pianokey2.PNG'
+        }
+
+
+
+
+
+        let overlaydiv = adddiv()
+        overlaydiv.setAttribute('id', 'overlay')
+        overlaydiv.style.display = 'block'
+
+        if (final == 'C' || final == 'F') {
+            overlaydiv.style.left = '23px'
+        } if (final == 'E' || final == 'A') {
+            overlaydiv.style.left = '169px'
+        } if (final == 'B') {
+            overlaydiv.style.left = '241px'
+        }
+
+        let divinside = document.createElement('div')
+        overlaydiv.appendChild(divinside)
+        divinside.setAttribute('id', 'text')
+        divinside.innerText = final
+
+        var pianoimg = document.createElement('IMG')
+        pianoimg.setAttribute('src', imgsrcforpiano);
+        document.body.appendChild(pianoimg)
+
+
+
+
+
+        function adddiv() {
+            let div = document.createElement('div')
+            bigdiv.appendChild(div)
+            return div
+        }
+    }
+
+    </script>
+</body>
+
+</html>
