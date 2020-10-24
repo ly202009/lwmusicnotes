@@ -2,66 +2,66 @@ const quarternotesperminute = 105 //76 * 1.5
 
 // const synth = new Tone.Synth().toDestination(); // when play samples, do not need to load Synth or polySynth
 
-d3.select('div#bigdiv').append('button').text('play the song').styles({'margin-top': '30px'})
+d3.select('div#bigdiv').append('button').text('play the song').styles({ 'margin-top': '30px' })
     .on('click', async function () {
 
-    //https://tonejs.github.io/
-    // const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+        //https://tonejs.github.io/
+        // const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 
-    // get slices of nodes to play
-    notes = getNotesToDisplay(allnotes, 0, 200)
-    // console.log(notes)
- 
-    let notesToPlay = prepareNotes(notes)
-    // console.log(notesToPlay)
+        // get slices of nodes to play
+        notes = getNotesToDisplay(allnotes, 0, 200)
+        // console.log(notes)
 
-    // let note = { toneletter: 'C', semi: '', octave: 4, beat: 1 }
-    // await playAnoteAttackRelease(note)
-    // await playAnoteAttackThenRelease(note)
+        let notesToPlay = prepareNotes(notes)
+        // console.log(notesToPlay)
 
-    // let notes = [
-    //     { toneletter: 'C', semi: '', octave: 4, beat: 1 },
-    //     { toneletter: 'E', semi: '', octave: 4, beat: 1 },
-    //     { toneletter: 'G', semi: '', octave: 4, beat: 1 },
-    //     { toneletter: 'C', semi: '', octave: 5, beat: 1 }
-    // ]
-    // await playPolyNotes(notes)
+        // let note = { toneletter: 'C', semi: '', octave: 4, beat: 1 }
+        // await playAnoteAttackRelease(note)
+        // await playAnoteAttackThenRelease(note)
 
-    // play an mp3 sample
-    // let url = 'data/instruments/piano/c4.mp3'
-    // playSample(url)
+        // let notes = [
+        //     { toneletter: 'C', semi: '', octave: 4, beat: 1 },
+        //     { toneletter: 'E', semi: '', octave: 4, beat: 1 },
+        //     { toneletter: 'G', semi: '', octave: 4, beat: 1 },
+        //     { toneletter: 'C', semi: '', octave: 5, beat: 1 }
+        // ]
+        // await playPolyNotes(notes)
 
-    // play multipy mp3 samples
-    // let urls=['whatever']
-    // playPolySample(urls)
+        // play an mp3 sample
+        // let url = 'data/instruments/piano/c4.mp3'
+        // playSample(url)
 
-    // let urls = ['whatever']
-    // myPlayPolySample1(urls)
+        // play multipy mp3 samples
+        // let urls=['whatever']
+        // playPolySample(urls)
 
-    // let urls = ['whatever']
-    // myPlayPolySample2(urls)
+        // let urls = ['whatever']
+        // myPlayPolySample1(urls)
 
-    let urls = ['whatever']
-    let baseUrl = 'data/instruments/piano/'
-    let samples = {
-        "C4": "C4.mp3",
-        "D#4": "Ds4.mp3",
-        "F#4": "Fs4.mp3",
-        "A4": "A4.mp3",
-    }
+        // let urls = ['whatever']
+        // myPlayPolySample2(urls)
 
-    // let baseUrl = 'externaltools/tone_instruments/samples/harmonium/'
-    // let samples = {
-    //     "A3": "A3.mp3",
-    //     "A#3": "As3.mp3",
-    //     "C4": "C4.mp3",
-    //     "E3": "E3.mp3",
-    //     "F#2": "Fs2.mp3",
-    // }
-    
-    
-    myPlayPolySample3(urls, samples, baseUrl, notesToPlay)
-})
+        let urls = ['whatever']
+        let baseUrl = 'data/instruments/piano/'
+        let samples = {
+            "C4": "C4.mp3",
+            "D#4": "Ds4.mp3",
+            "F#4": "Fs4.mp3",
+            "A4": "A4.mp3",
+        }
+
+        // let baseUrl = 'externaltools/tone_instruments/samples/harmonium/'
+        // let samples = {
+        //     "A3": "A3.mp3",
+        //     "A#3": "As3.mp3",
+        //     "C4": "C4.mp3",
+        //     "E3": "E3.mp3",
+        //     "F#2": "Fs2.mp3",
+        // }
+
+
+        myPlayPolySample3(urls, samples, baseUrl, notesToPlay)
+    })
 
 
 
@@ -78,10 +78,10 @@ function prepareNotes(notes) {
         clefs.forEach((e, j) => {
             // console.log(e) // left, right
             let notesInAClef = d[e]
-    
+
 
             notesInAClef.forEach((g, k) => {
-                   
+
                 let tmp = {}
                 tmp.moment = i
                 tmp.staff = g.staffpos
@@ -99,12 +99,12 @@ function prepareNotes(notes) {
             })
 
         })
-       
+
         momentStartTime = momentStartTime + minDuration
     })
 
     return results
-} 
+}
 async function myPlayPolySample3(urls, samples, baseUrl, notesToPlay) {
     const sampler = new Tone.Sampler({
         urls: samples,
@@ -120,7 +120,7 @@ async function myPlayPolySample3(urls, samples, baseUrl, notesToPlay) {
 
         })
     })
-} 
+}
 async function myPlayPolySample2(urls) {
     const sampler = new Tone.Sampler({
         urls: {
@@ -154,7 +154,7 @@ async function myPlayPolySample2(urls) {
             sampler.triggerAttackRelease(["A4"], 1, now + 5);
         })
     })
-} 
+}
 
 async function myPlayPolySample1(urls) {
     const sampler = new Tone.Sampler({
@@ -172,10 +172,10 @@ async function myPlayPolySample1(urls) {
             const now = Tone.now()
             sampler.triggerAttackRelease(["C2", "G4"], 4, now);
             sampler.triggerAttackRelease(["G4", "C5"], 2, now + 2);
-            
-        }) 
+
+        })
     })
-} 
+}
 async function playPolySample(urls) {
     const sampler = new Tone.Sampler({
         urls: {
@@ -189,9 +189,9 @@ async function playPolySample(urls) {
     }).toDestination();
 
     Tone.loaded().then(() => {
-        sampler.triggerAttackRelease(["Eb4", "G4", "Bb4"], 4); 
+        sampler.triggerAttackRelease(["Eb4", "G4", "Bb4"], 4);
     })
-} 
+}
 async function playSample(url) {
     const player = new Tone.Player(url).toDestination();
     Tone.loaded().then(() => {
@@ -201,7 +201,7 @@ async function playSample(url) {
 
 async function playPolyNotes(notes) {
     await Tone.start()
-    const now = Tone.now() 
+    const now = Tone.now()
     Tone.context.resume().then(() => {
 
         notes.forEach((d, i) => {
@@ -212,7 +212,7 @@ async function playPolyNotes(notes) {
             synth.triggerRelease(keystr, endtime)
         })
     });
-} 
+}
 async function playAnoteAttackRelease(note) {
     let keystr = note.toneletter + note.semi + note.octave
     await Tone.start()
@@ -223,9 +223,9 @@ async function playAnoteAttackRelease(note) {
         let timestr = seconds + 'n'
         console.log(keystr, timestr)
 
-        synth.triggerAttackRelease(keystr, seconds, now); 
+        synth.triggerAttackRelease(keystr, seconds, now);
     });
-} 
+}
 async function playAnoteAttackThenRelease(note) {
     let keystr = note.toneletter + note.semi + note.octave
     await Tone.start()
@@ -274,16 +274,64 @@ async function playPressedKey(ev) {
         const now = Tone.now()
         Tone.context.resume().then(() => {
             sampler.triggerAttack(key, now)
+
             d3.select(ev.target).on('mouseup', async function () {
-                sampler.triggerRelease(key, now)                
-                d3.select(ev.target).attr('fill',  function (){ 
+                sampler.triggerRelease(key, now)
+                d3.select(ev.target).attr('fill', function () {
+
                     if (key.length > 2) {
                         return 'black';
                     } else {
                         return 'white';
-                    } 
-                }) 
+                    }
+                })
+            }) //d3
+
+            d3.select(ev.target).on('touchend', async function () {
+                sampler.triggerRelease(key, now)
+                d3.select(ev.target).attr('fill', function () {
+
+                    if (key.length > 2) {
+                        return 'black';
+                    } else {
+                        return 'white';
+                    }
+                })
+            }) //d3
+
+             //d3
+
+
+
+            d3.select(ev.target).on('mouseleave', async function () {
+                sampler.triggerRelease(key, now)
+                d3.select(ev.target).attr('fill', function () {
+                    if (key.length > 2) {
+                        return 'black';
+                    } else {
+                        return 'white';
+                    }
+                })
+
+            }) //d3
+
+            d3.select(ev.target).on('touchmove', async function () {
+                sampler.triggerRelease(key, now)
+                d3.select(ev.target).attr('fill', function () {
+                    if (key.length > 2) {
+                        return 'black';
+                    } else {
+                        return 'white';
+                    }
+                })
+
             })
-        }); 
-    }) 
+
+            
+
+            
+
+
+        });
+    })
 }

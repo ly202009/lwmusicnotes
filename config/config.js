@@ -17,11 +17,13 @@ const pianokeysize = {
 const pianokeydata = {
     stdrectattrs: { 'class': 'keyrect', 'stroke': 'black', 'stroke-width': 1 },
     stdtextattrs: {
-        white: { 'fill': 'black', 'font-family': 'sans-serif', 'font-size': 10, 'font-weight': 'bold', 'text-align': 'center' },
-        black: { 'fill': 'white', 'font-family': 'sans-serif', 'font-size': 10, 'font-weight': 'bold', 'text-align': 'left', 'padding': '0' }
+        white: { 'fill': 'black', 'font-family': 'sans-serif', 'font-size': 10, 'font-weight': 'bold', 'text-align': 'center', 'cursor': 'default', },
+        black: { 'fill': 'white', 'font-family': 'sans-serif', 'font-size': 10, 'font-weight': 'bold', 'text-align': 'left', 'padding': '0', 'cursor': 'default', }
     }
 
 } //pianokeydata
+
+
 
 const maxnotedivs = 10000;
 

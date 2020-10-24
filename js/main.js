@@ -1,6 +1,6 @@
 "use strict"
 
-let note_stdobj = datastr_to_stdobj(notesStr_lb);
+let note_stdobj = datastr_to_stdobj(notesStr_charge);
 
 var allnotes = getMusicNotes(note_stdobj);
 

@@ -1,3 +1,5 @@
+var held = false
+
 async function buildPianoWrappers() {
     let pianodiv_d3xn = d3.select('div#bigdiv').append('div')
         .attrs({ 'id': 'pianodiv', 'name': 'pianodiv' })
@@ -69,13 +71,48 @@ async function buildPianoKeys() {
         })
 
         .on('mousedown', async function (ev) {
-    
+            
+            held = true
+            console.log(held)
+
             ev.preventDefault()
             ev.stopPropagation()
     
             playPressedKey(ev)
-
         }) 
+
+        .on('touchstart', async function (ev) {
+            
+            held = true
+            console.log(held)
+
+            ev.preventDefault()
+            ev.stopPropagation()
+    
+            playPressedKey(ev)
+        }) 
+
+        .on('mouseenter', async function (ev) {
+            if (held === true) {
+                
+                ev.preventDefault()
+                ev.stopPropagation()
+
+                playPressedKey(ev)
+            }
+        })
+       
+        
+        // .on('mouseover', async function(ev, held){
+        //     console.log('mouse is going over')
+        //     if (held === true) {
+            
+        //     ev.preventDefault()
+        //     ev.stopPropagation()
+    
+        //     playPressedKey(ev)
+        //     }
+        // })
 
     pianog_d3xn.selectAll('g.whitekeyg')
         .append('text')
@@ -158,12 +195,34 @@ function addBlackKey_wholepiano(em, emi, width_whitekey, height_whitekey) {
         })
 
         .on('mousedown', async function (ev) {
+
+            held = true
+            console.log(held)
     
             ev.preventDefault()
             ev.stopPropagation()
     
             playPressedKey(ev)
   
+        })
+        .on('touchstart', async function (ev) {
+            
+            held = true
+            console.log(held)
+
+            ev.preventDefault()
+            ev.stopPropagation()
+    
+            playPressedKey(ev)
+        }) 
+        .on('mouseenter', async function (ev) {
+            if (held === true) {
+                
+                ev.preventDefault()
+                ev.stopPropagation()
+
+                playPressedKey(ev)
+            }
         })
 
     keyg

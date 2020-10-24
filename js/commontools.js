@@ -6,6 +6,11 @@ async function readlocalfile(thefileobj, callback_whendoneDosomething) {
     newreaderinstance.onload = callback_whendoneDosomething;
 }
 
+function setheldtofalse() {
+    held = false
+    console.log(held)
+        // console.log('TURN OFF MOUSE')
+    }
 
 async function MakeDomEle(data) {
     let theNewEle = document.createElement(data.nodetype)
@@ -43,6 +48,7 @@ async function MakeModelTemplate(modeltemplatedata, notclose) {
         $('div#model-dialoguebox').draggable({ disabled: false })
     })
     $('div#model-title').on('mouseup', function () {
+        
         $('div#model-dialoguebox').draggable({ disabled: true })
     })
 
@@ -70,6 +76,8 @@ async function MakeModelTemplate(modeltemplatedata, notclose) {
 async function closemodel() {
     $('#model-background').remove()
 }
+
+
 
 async function removenodes(parent) {
     removeAllChildNodes(parent)
