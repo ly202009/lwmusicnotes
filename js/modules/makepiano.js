@@ -3,8 +3,10 @@ var held = false
 async function buildPianoWrappers() {
     let pianodiv_d3xn = d3.select('div#bigdiv').append('div')
         .attrs({ 'id': 'pianodiv', 'name': 'pianodiv' })
-        .styles({ 'border': 'solid 0px', 'width': '100%', 
-                'height': pianokeysize.fullscreen_whitekey.height, 'margin-top': '100px', 'float': 'left'})
+        .styles({
+            'border': 'solid 0px', 'width': '100%',
+            'height': pianokeysize.fullscreen_whitekey.height, 'margin-top': '100px', 'float': 'left'
+        })
 
     let pianosvg_d3xn = pianodiv_d3xn.append('svg').attrs({ 'id': 'pianosvg' })
         .styles({ 'height': '100%', 'width': '100%', 'background-color': 'white' })
@@ -19,10 +21,10 @@ async function buildPianoKeys() {
 
     let width_keychamber = pianosvgsize.width / 52
 
-    let width_whitekey = width_keychamber 
+    let width_whitekey = width_keychamber
 
     let height_whitekey = width_whitekey * (pianokeysize.white.length / pianokeysize.white.width)
- 
+
     if (height_whitekey > pianosvgsize.height) {
         height_whitekey = pianosvgsize.height
         width_whitekey = height_whitekey / (pianokeysize.white.length / pianokeysize.white.width)
@@ -40,12 +42,12 @@ async function buildPianoKeys() {
         .append('g')
         .attrs({ 'class': 'whitekeyg' })
         .attr('id', (d, i) => {
-            
+
             let letternumber = i
             let anchor_A = 65
             let rng = 7
             let toneletter = NumToToneLetter(letternumber, anchor_A, rng)
-            
+
             let octaveN = 0
             if (i > 1) {
                 octaveN = parseInt((i - 2) / 7) + 1
@@ -57,12 +59,12 @@ async function buildPianoKeys() {
         .attrs({ 'fill': 'white' })
         .styles({ 'width': width_whitekey + 'px', 'height': height_whitekey + 'px' })
         .attr('id', (d, i) => {
-            
+
             let letternumber = i
             let anchor_A = 65
             let rng = 7
             let toneletter = NumToToneLetter(letternumber, anchor_A, rng)
-           
+
             let octaveN = 0
             if (i > 1) {
                 octaveN = parseInt((i - 2) / 7) + 1
@@ -71,48 +73,49 @@ async function buildPianoKeys() {
         })
 
         .on('mousedown', async function (ev) {
-            
             held = true
             console.log(held)
-
             ev.preventDefault()
             ev.stopPropagation()
-    
+
             playPressedKey(ev)
-        }) 
+        })
 
         .on('touchstart', async function (ev) {
-            
-            held = true
-            console.log(held)
-
-            ev.preventDefault()
             ev.stopPropagation()
-    
+
             playPressedKey(ev)
-        }) 
+        })
 
         .on('mouseenter', async function (ev) {
             if (held === true) {
-                
+
                 ev.preventDefault()
                 ev.stopPropagation()
 
                 playPressedKey(ev)
             }
         })
-       
-        
-        // .on('mouseover', async function(ev, held){
-        //     console.log('mouse is going over')
-        //     if (held === true) {
-            
-        //     ev.preventDefault()
-        //     ev.stopPropagation()
-    
-        //     playPressedKey(ev)
-        //     }
-        // })
+        .on('touchmove', async function (ev) {
+            if (held === true) {
+
+                ev.stopPropagation()
+
+                playPressedKey(ev)
+            }
+        })
+
+
+    // .on('mouseover', async function(ev, held){
+    //     console.log('mouse is going over')
+    //     if (held === true) {
+
+    //     ev.preventDefault()
+    //     ev.stopPropagation()
+
+    //     playPressedKey(ev)
+    //     }
+    // })
 
     pianog_d3xn.selectAll('g.whitekeyg')
         .append('text')
@@ -157,7 +160,7 @@ async function buildPianoKeys() {
             addBlackKey_wholepiano(em, emi, width_whitekey, height_whitekey)
         }
     })
-} 
+}
 
 function addBlackKey_wholepiano(em, emi, width_whitekey, height_whitekey) {
 
@@ -198,32 +201,39 @@ function addBlackKey_wholepiano(em, emi, width_whitekey, height_whitekey) {
 
             held = true
             console.log(held)
-    
-            ev.preventDefault()
-            ev.stopPropagation()
-    
-            playPressedKey(ev)
-  
-        })
-        .on('touchstart', async function (ev) {
-            
-            held = true
-            console.log(held)
 
             ev.preventDefault()
             ev.stopPropagation()
-    
+
             playPressedKey(ev)
-        }) 
+
+        })
+        // .on('touchstart', async function (ev) {
+
+        //     ev.preventDefault()
+        //     ev.stopPropagation()
+
+        //     playPressedKey(ev)
+        // }) 
         .on('mouseenter', async function (ev) {
             if (held === true) {
-                
+
                 ev.preventDefault()
                 ev.stopPropagation()
 
                 playPressedKey(ev)
             }
         })
+    // .on('touchenter', async function (ev) {
+    //     if (held === true) {
+
+    //         ev.preventDefault()
+    //         ev.stopPropagation()
+
+    //         playPressedKey(ev)
+    //     }
+    // })
+
 
     keyg
         .append('text')
@@ -238,6 +248,6 @@ function addBlackKey_wholepiano(em, emi, width_whitekey, height_whitekey) {
             return pianokeydata.stdtextattrs.black['font-size'] * height_whitekey / pianokeysize.fullscreen_whitekey.height
         })
         .text((d, i) => {
-            return '#' + toneletter  + octaveN
+            return '#' + toneletter + octaveN
         })
 } 

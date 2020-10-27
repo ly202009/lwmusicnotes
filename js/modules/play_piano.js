@@ -284,7 +284,7 @@ async function playPressedKey(ev) {
                     } else {
                         return 'white';
                     }
-                })
+                }) 
             }) //d3
 
             d3.select(ev.target).on('touchend', async function () {
@@ -315,17 +315,7 @@ async function playPressedKey(ev) {
 
             }) //d3
 
-            d3.select(ev.target).on('touchmove', async function () {
-                sampler.triggerRelease(key, now)
-                d3.select(ev.target).attr('fill', function () {
-                    if (key.length > 2) {
-                        return 'black';
-                    } else {
-                        return 'white';
-                    }
-                })
-
-            })
+            
 
             
 

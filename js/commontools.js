@@ -12,6 +12,12 @@ function setheldtofalse() {
         // console.log('TURN OFF MOUSE')
     }
 
+    function setheldtotrue() {
+        held = true
+        console.log(held)
+            // console.log('TURN OFF MOUSE')
+        }
+
 async function MakeDomEle(data) {
     let theNewEle = document.createElement(data.nodetype)
     data.parent.append(theNewEle)

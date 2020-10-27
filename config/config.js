@@ -3,6 +3,10 @@ const letternumber_for_staffposition1 = {
     r: 69
 };
 
+
+
+// document.body.ontouchend = setheldtofalse()
+
 const anchor_A = 65;
 
 const n_tone_letters = 7;
